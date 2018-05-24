@@ -5,24 +5,24 @@ This application requires Apache Cordova and Node.js to run. Download Apache Cor
 
 ScreenShots
 
-MAINS SCREEN
+MAINS SCREEN<br />
 ![alt text](https://i.imgur.com/NUmDgFM.png)
 
-SHOPS
+SHOPS<br />
 ![alt text](https://i.imgur.com/Tgu4Pbm.png)
 
-ENEMIES
+ENEMIES<br />
 ![alt text](https://i.imgur.com/UpaZ8ND.png)
 
-FIGHTING
+FIGHTING<br />
 ![alt text](https://i.imgur.com/L5BBJuw.png)
 
-LOOT
+LOOT<br />
 ![alt text](https://i.imgur.com/xGHcvPw.png)
 
-INVENTORY
+INVENTORY<br />
 ![alt text](https://i.imgur.com/rdjK62S.png)
 
-SKILLS
+SKILLS<br />
 ![alt text](https://i.imgur.com/s5Nj06Y.png)
 
