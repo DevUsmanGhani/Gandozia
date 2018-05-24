@@ -1,0 +1,6 @@
+jQuery
+JQuery Confirm for alert boxes
+notify.js for notification messages
+page.js for routing
+Bootstrap for responsive design
+

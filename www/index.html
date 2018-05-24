@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+
+
+
+<html>
+
+<head>
+
+
+    <meta charset="utf-8">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+    <link rel="stylesheet" type="text/css" href="css/index.css">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.0/jquery-confirm.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.12/css/all.css" integrity="sha384-G0fIWCsCzJIMAVNQPfjH08cyYaUtMwjJwqiRKxxE/rx96Uroj1BtIQ6MLJuheaO9" crossorigin="anonymous">
+
+
+    <title>Gandozia</title>
+
+</head>
+
+<body style="background-color:darkgoldenrod">
+
+    <div class="container  h-100">
+
+        <!--The top header with all information about gold/miners/miningpower-->
+        <nav class="navbar-fixed-top navbar-inverse" id="topBar">
+            <div class="container">
+                <ul class="nav navbar-nav noMargin" style="color:white; font-family: fantasy; font-size: 21px">
+                    <li>
+                        <div style="display: inline-block">
+                            <span>Health: </span><span class="showHp"></span>
+                        </div>
+
+                        <div class="progress myBar">
+                            <div class="progress-bar progress-bar-success progress-bar-striped active healthBar" role="progressbar">
+                            </div>
+                        </div>
+
+                    </li>
+                    <li>
+                        <div style="display: inline-block">
+                            <span>Arcana: </span><span class="showArcana"></span>
+                        </div>
+                        <div class="progress myBar">
+                            <div class="progress-bar progress-bar-warning progress-bar-striped active arcanaBar" role="progressbar">
+                            </div>
+                        </div>
+
+                    </li>
+                    <!--
+                    -->
+                    <li><span> Gold: </span><span style="color: gold" id="goldCount" style="padding-right: 4em"> </span></li>
+                </ul>
+            </div>
+        </nav>
+
+        <!--The main interactable interface/screens-->
+        <div class="row justify-content-center align-self-center vertical-center center-block" style="margin-top: 33%" id="content">
+
+
+            <!--The Overview Screen-->
+            <div class="center-text" id="overviewScreen" style="display:none;">
+                <img class="centerFitter" src="img/worldmap.jpg" />
+            </div>
+
+            <!--The main shops screen-->
+            <div class="center-text" id="shopScreen" style="display:none;">
+                <button type="button" class="btn  btn-block custom-button" onclick="page('/combatShop')">Thor's Weapon and Armor Shop</button>
+                <button type="button" class="btn  btn-block custom-button" onclick="page('/huntingShop')">Grand Hunting Shop of Artemis</button>
+                <button type="button" class="btn btn-block custom-button" onclick="page('/woodcuttingShop')">Bob's Woodsman Shop</button>
+                <button type="button" class="btn btn-block custom-button" onclick="page('/miningShop')">Gimli's Mining Emporium</button>
+            </div>
+
+            <!--The different shop screens-->
+
+            <!--The Combat Shop-->
+            <div class="center-text" id="combatShop" style="display:none;">
+
+                <!--Weapons-->
+                <button type="button" class="btn  btn-block custom-button" id="buyWoodenStick"><span>Wooden Stick </span><span id="woodenStickCost"></span></button>
+                <button type="button" class="btn  btn-block custom-button" id="buySteelSword" style="display: none"><span>Steel Sword </span><span id="steelSwordCost"></span></button>
+                <button type="button" class="btn  btn-block custom-button" id="buyHellFireSpear" style="display: none"><span>Hell Fire Spear of Ares </span><span id="hellFireSpearCost"></span></button>
+                <!--Armors-->
+                <button type="button" class="btn  btn-block custom-button" id="buyLeatherArmor"><span>Leather Armor </span><span id="leatherArmorCost"></span></button>
+                <button type="button" class="btn  btn-block custom-button" id="buySteelArmor" style="display: none"><span>Steel Armor </span><span id="steelArmorCost"></span></button>
+                <!--Helmets-->
+                <button type="button" class="btn btn-block custom-button" id="buyVikingHelmet"><span>Viking Helmet </span><span id="vikingHelmetCost"></span></button>
+                <!--Amulets-->
+                <button type="button" class="btn btn-block custom-button" id="buyAmuletOfBlood"><span>Amulet of Blood </span><span id="amuletOfBloodCost"></span></button>
+                <button type="button" class="btn btn-block custom-button back" onclick="page('/shop')">Back</button>
+
+            </div>
+
+            <!--The Hunting Shop-->
+            <div class="center-text" id="huntingShop" style="display:none;">
+                <!--Bows-->
+                <button type="button" class="btn  btn-block custom-button" id="buyHuntingBow">Hunting Bow <span id="huntingBowCost"></span></button>
+                <button type="button" class="btn  btn-block custom-button" id="buyScopedHuntingBow" style="display: none">Scoped Hunting Bow <span id="scopedHuntingBowCost"></span></button>
+                <!--Food Bags-->
+                <button type="button" class="btn  btn-block custom-button" id="buySmallFoodChest">Small Food Chest <span id="smallFoodChestCost"></span></button>
+                <button type="button" class="btn  btn-block custom-button" id="buyMediumFoodChest" style="display: none">Medium Food Chest <span id="mediumFoodChestCost"></span></button>
+                <button type="button" class="btn  btn-block custom-button" id="buyLargeFoodChest" style="display: none">Large Food Chest <span id="largeFoodChestCost"></span></button>
+                <button type="button" class="btn  btn-block custom-button" id="buyExtraLargeFoodChest" style="display: none">Extra Large Food Chest <span id="extraLargeFoodChestCost"></span></button>
+                <!--Food-->
+                <button type="button" class="btn btn-block custom-button" id="buyFood">Buy Food <span id="foodCost"></span></button>
+                <button type="button" class="btn btn-block custom-button sell" id="sellFood">Sell Food</button>
+
+                <button type="button" class="btn btn-block custom-button back" onclick="page('/shop')">Back</button>
+
+            </div>
+
+            <!--The Woodcutting Shop-->
+            <div class="center-text" id="woodcuttingShop" style="display:none;">
+                <!--Hatchets-->
+                <button type="button" class="btn  btn-block custom-button" id="buySteelHatchet">Steel Hatchet <span id="steelHatchetCost"></span></button>
+                <button type="button" class="btn  btn-block custom-button" id="buyDoubleSidedHatchet" style="display:none">Double Sided Hatchet <span id="doubleSidedHatchetCost"></span></button>
+                <!--Log Bags-->
+                <button type="button" class="btn  btn-block custom-button" id="buySmallLogBag">Small Log Bag <span id="smallLogBagCost"></span></button>
+                <button type="button" class="btn  btn-block custom-button" id="buyMediumLogBag" style="display: none">Medium Log Bag <span id="mediumLogBagCost"></span></button>
+                <button type="button" class="btn  btn-block custom-button" id="buyLargeLogBag" style="display: none">Large Log Bag <span id="largeLogBagCost"></span></button>
+                <button type="button" class="btn  btn-block custom-button" id="buyExtraLargeLogBag" style="display: none">Extra Large Log Bag <span id="extraLargeLogBagCost"></span></button>
+                <!--Logs-->
+                <button type="button" class="btn btn-block custom-button" id="buyLog">Buy Log <span id="logCost"></span></button>
+                <button type="button" class="btn btn-block custom-button sell" id="sellLog">Sell Log</button>
+                <button type="button" class="btn btn-block custom-button back" onclick="page('/shop')">Back</button>
+            </div>
+
+            <!--The Mining Shop screen-->
+            <div class="center-text" id="miningShop" style="display:none;">
+                <!--Pickaxes-->
+                <button type="button" class="btn  btn-block custom-button" id="buySteelPickaxe">Steel Pickaxe <span id="steelPickaxeCost"></span></button>
+                <button type="button" class="btn  btn-block custom-button" id="buyReinforcedPickaxe" style="display:none">Reinforced Pickaxe <span id="reinforcedPickaxeCost"></span></button>
+                <!--Crystal Pouchs-->
+                <button type="button" class="btn  btn-block custom-button" id="buySmallCrystalPouch">Small Crystal Pouch <span id="smallCrystalPouchCost"></span></button>
+                <button type="button" class="btn  btn-block custom-button" id="buyMediumCrystalPouch" style="display: none">Medium Crystal Pouch <span id="mediumCrystalPouchCost"></span></button>
+                <button type="button" class="btn  btn-block custom-button" id="buyLargeCrystalPouch" style="display: none">Large Crystal Pouch <span id="largeCrystalPouchCost"></span></button>
+                <button type="button" class="btn  btn-block custom-button" id="buyExtraLargeCrystalPouch" style="display: none">Extra Large Crystal Pouch <span id="extarLargeCrystalPouchCost"></span></button>
+                <!--Ore-->
+                <button type="button" class="btn btn-block custom-button" id="buyArcanicCrystal">Buy Arcanic Crystal <span id="arcanicCrystalCost"></span></button>
+                <button type="button" class="btn btn-block custom-button sell" id="sellArcanicCrystal">Sell Arcanic Crystal</button>
+                <button type="button" class="btn btn-block custom-button back" onclick="page('/shop')">Back</button>
+            </div>
+
+
+            <!--The gambling screen-->
+            <div class="center-text" id="gambleScreen" style="display:none;">
+                <button type="button" class="btn  btn-block custom-button"><span id="gamble100">Gamble 100 Gold </span></button>
+                <button type="button" class="btn  btn-block custom-button"><span id="gamble1000">Gamble 1000 Gold </span></button>
+                <button type="button" class="btn  btn-block custom-button"><span id="gamble2500">Gamble 2500 Gold </span></button>
+                <button type="button" class="btn  btn-block custom-button"><span id="gamble5000">Gamble 5000 Gold </span></button>
+            </div>
+
+            <!--The Hero Screens-->
+            <!--Stats screen-->
+            <div class="center-block" id="statsScreen" style="display:block; font-size: 2em;">
+                <div class="skill-level"><span id="combatLevel"></span><br /><span class="exp" id="combatExp"></span></div>
+                <div class="skill-level"><span id="arcaniaLevel"></span><br /><span class="exp" id="arcaniaExp"></span></div>
+                <div class="skill-level"><span id="huntingLevel"></span><br /><span class="exp" id="huntingExp"></span></div>
+                <div class="skill-level"><span id="woodcuttingLevel"></span><br /><span class="exp" id=woodcuttingExp></span></div>
+                <div class="skill-level"><span id="miningLevel"></span><br /><span class="exp" id="miningExp"></span></div>
+            </div>
+
+            <!--The Inventory screen-->
+            <div class="center-block" id="inventoryScreen" style="display:none; font-size: 2em;">
+                <div id="inventoryHeader" class="text-center">INVENTORY</div>
+                <div id="inventory">
+                    <div id="inventoryHunting">
+                        <div><span>Food: </span><span id="inventoryFood" class="sml hnt"></span><button type="button" class="btn eatFood consume">Eat</button><span class="pull-right bonus"><span>Hunting Bonus: </span><span id="huntingBonus"></span></span>
+                        </div>
+                        <div>Bow: <span id="inventoryBow" class="sml hnt">Wooden Bow</span></div>
+                        <div>Food Chest: <span id="inventoryFoodChest" class="sml hnt">None</span></div>
+                        <div></div>
+                    </div>
+                    <div id="inventoryWoodcutting">
+                        <div><span>Logs: </span><span id="inventoryLogs" class="sml wc"></span><span class="pull-right bonus"><span>Woodcutting Bonus: </span><span id="woodcuttingBonus"></span></span>
+                        </div>
+                        <div>Hatchet: <span id="inventoryHatchet" class="sml wc">Wooden Hatchet</span></div>
+                        <div>Log Bag: <span id="inventoryLogBag" class="sml wc">None</span></div>
+                    </div>
+                    <div id="inventoryMining">
+                        <div><span>Crystals: </span><span id="inventoryArcanicCrystals" class="sml mn"></span><button type="button" class="btn absorbCrystal consume">Absorb</button><span class="pull-right bonus"><span>Mining Bonus: </span><span id="miningBonus"></span></span>
+                        </div>
+                        <div>Pickaxe: <span id="inventoryPickaxe" class="sml mn">Wooden Pickaxe</span></div>
+                        <div>Crystal Pouch: <span id="inventoryCrystalPouch" class="sml mn">None</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <!--The Equipment screen-->
+            <div class="center-block" id="equipmentScreen" style="display:none; font-size: 2em;">
+                <div id="equipmentHeader" class="text-center ">Equipment</div>
+                <div id="equipment">
+                    <div><span class="equip">Weapon: </span><span id="equippedWeapon" class="eq">Fists</span></div>
+                    <div><span class="equip">Armor: </span><span id="equippedArmor" class="eq">Tattered Robes</span></div>
+                    <div><span class="equip">Helmet: </span><span id="equippedHelmet" class="eq">None</span></div>
+                    <div><span class="equip">Amulet: </span><span id="equippedAmulet" class="eq">None</span></div>
+                </div>
+                <div id="equipmentStats">
+                    <div><span class="equipStatHeader">Damage: </span><span id="damage"></span></div>
+                    <div><span class="equipStatHeader">Hit Chance: </span><span id="hitChance"></span></div>
+                    <div><span class="equipStatHeader">Block Chance: </span><span id="blockChance"></span></div>
+                </div>
+
+            </div>
+
+            <!--The skills screens-->
+
+            <!--The combat screen-->
+            <div class="center-text" id="combatScreen" style="display:none;">
+                <button type="button" class="btn   custom-button" onclick="page('/fightGoblin')">Goblin</button><button id="goblinInfo" class="btn info"><span class="fas fa-info"></span></button>
+                <button type="button" class="btn   custom-button" onclick="page('/fightBandit')">Bandit</button><button id="banditInfo" class="btn info"><span class="fas fa-info"></span></button>
+                <button type="button" class="btn   custom-button" onclick="page('/fightOrc')">Orc</button><button id="orcInfo" class="btn info"><span class="fas fa-info"></span></button>
+
+            </div>
+            <!--The arcania screen-->
+            <div class="center-text" id="arcaniaScreen" style="display:none;">
+                <button type="button" class="btn  custom-button btn85" onclick="page('/alchemy')"><span id="alchemy">Alchemy</span></button><button id="alchemyInfo" class="btn info"><span class="fas fa-info"></span></button>
+                <button type="button" class="btn  btn-block custom-button" style="display:none"><span >Placeholder </span></button>
+                <button type="button" class="btn  btn-block custom-button" style="display:none"><span >Placeholder </span></button>
+                <button type="button" class="btn  btn-block custom-button" style="display:none"><span >Placeholder </span></button>
+            </div>
+            <!--The hunting screen-->
+            <div class="center-text" id="huntScreen" style="display:none;">
+                <button type="button" class="btn  btn-block custom-button" onclick="page('/huntDeer')"><span id="huntDeer">Hunt Deer</span></button>
+                <button type="button" class="btn  btn-block custom-button" style="display:none"><span >Placeholder </span></button>
+                <button type="button" class="btn  btn-block custom-button" style="display:none"><span >Placeholder </span></button>
+                <button type="button" class="btn  btn-block custom-button" style="display:none"><span >Placeholder </span></button>
+            </div>
+            <!--The woodcutting screen-->
+            <div class="center-text" id="woodcutScreen" style="display:none;">
+                <button type="button" class="btn  btn-block custom-button" onclick="page('/chopDeadTrees')"><span id="chopDeadTrees">Chop Dead Trees</span></button>
+                <button type="button" class="btn  btn-block custom-button" style="display:none"><span >Placeholder </span></button>
+                <button type="button" class="btn  btn-block custom-button" style="display:none"><span >Placeholder </span></button>
+                <button type="button" class="btn  btn-block custom-button" style="display:none"><span >Placeholder </span></button>
+            </div>
+            <!--The mining screen-->
+            <div class="center-text" id="mineScreen" style="display:none;">
+                <button type="button" class="btn  btn-block custom-button" onclick="page('/mineSmallCrystals')"><span id="mineSmallCrystals">Mine Small Crystals</span></button>
+                <button type="button" class="btn  btn-block custom-button" style="display:none"><span >Placeholder </span></button>
+                <button type="button" class="btn  btn-block custom-button" style="display:none"><span >Placeholder </span></button>
+                <button type="button" class="btn  btn-block custom-button" style="display:none"><span >Placeholder </span></button>
+            </div>
+
+
+            <!--The combat Training screens-->
+            <!--The Fight Goblins screen-->
+            <div class="fight" id="fightgoblinScreen" style="display:none;">
+                <span class="name enemy">Goblin </span>
+                <br />
+                <span class="black">Health: </span><span id="goblinHp"> </span>
+                <div class="progress">
+                    <div id="goblinHealthBar" class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100">
+                    </div>
+                </div>
+                <button type="button" class="btn custom-button fight-button" id="fightGoblinButton">Attack</button><button type="button" class="btn custom-button fight-button" id="blastGoblin">Arcane Blast</button><button type="button" class="btn custom-button fight-button eatFood">Eat</button>
+                <!--<div class="dropdown">
+                    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">Attack</button>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="#">Accurate Attack</a><br />
+                        <a class="dropdown-item" href="#">Normal Attack</a><br />
+                        <a class="dropdown-item" href="#">Heavy Attack</a>
+                    </div>
+                </div>-->
+                <br />
+                <span class="name you">You </span>
+                <br />
+                <span class="black"> Health: </span><span class="showHp"></span>
+                <div class="progress">
+                    <div class="progress-bar  progress-bar-success progress-bar-striped active healthBar" role="progressbar">
+                    </div>
+                </div>
+
+            </div>
+
+            <!--The fight bandits screen-->
+            <div class="fight" id="fightBanditScreen" style="display:none;">
+                <span class="name enemy">Bandit </span>
+                <br />
+                <span class="black">Health: </span><span id="banditHp"> </span>
+                <div class="progress">
+                    <div id="banditHealthBar" class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100">
+                    </div>
+                </div>
+                <button type="button" class="btn custom-button fight-button" id="fightBanditButton">Attack</button><button type="button" class="btn custom-button fight-button" id="blastBandit">Arcane Blast</button><button type="button" class="btn custom-button fight-button eatFood">Eat</button>
+                <br />
+                <span class="name you">You </span>
+                <br />
+                <span class="black"> Health: </span><span class="showHp"></span>
+                <div class="progress">
+                    <div class="progress-bar progress-bar-success progress-bar-striped active healthBar" role="progressbar">
+                    </div>
+                </div>
+
+            </div>
+            <!--The fight orcs screen-->
+            <div class="fight" id="fightOrcScreen" style="display:none;">
+                <span class="name enemy">Orc </span>
+                <br />
+                <span class="black">Health: </span><span id="orcHp"> </span>
+                <div class="progress">
+                    <div id="orcHealthBar" class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100">
+                    </div>
+                </div>
+                <button type="button" class="btn custom-button fight-button" id="fightOrcButton">Attack</button><button type="button" class="btn custom-button fight-button" id="blastOrc">Arcane Blast</button><button type="button" class="btn custom-button fight-button eatFood">Eat</button>
+                <br />
+                <span class="name you">You </span>
+                <br />
+                <span class="black"> Health: </span><span class="showHp"></span>
+                <div class="progress">
+                    <div class="progress-bar progress-bar-success progress-bar-striped active healthBar" role="progressbar">
+                    </div>
+                </div>
+
+            </div>
+
+            <!--The Qrcania Training screens-->
+            <!--The Alchemy Screen-->
+            <div id="alchemyScreen" style="display:none;">
+                <button id="hpAlchemyBtn" type="button" class="btn  custom-button btn85">High Power Alchemize</button><button id="hpAlchemyInfo" class="btn info"><span class="fas fa-info"></span></button>
+                <button id="mpAlchemyBtn" type="button" class="btn  custom-button btn85">Medium Power Alchemize</button><button id="mpAlchemyInfo" class="btn info"><span class="fas fa-info"></span></button>
+                <button id="lpAlchemyBtn" type="button" class="btn  custom-button btn85">Low Power Alchemize</button><button id="lpAlchemyInfo" class="btn info"><span class="fas fa-info"></span></button>
+                <div class="alchemyLogs">
+                    <span>Logs: </span><span class="alchemyLogCount"></span>
+                </div>
+                <div class="alchemyArcana">
+                    <span>Arcana: </span><span class="showArcana showArcanaAlchemy"></span>
+                </div>
+                <div class="progress">
+                    <div class="progress-bar progress-bar-warning progress-bar-striped active arcanaBar" role="progressbar">
+                    </div>
+                </div>
+            </div>
+
+            <!--The Hunting Training screens-->
+            <!--The Hunt Deer screen-->
+            <div class="train" id="huntDeerScreen" style="display:none;"> <img src="img/huntIcon.png" style="max-width: 95%"> </div>
+
+            <!--The Woodcutting Training screens-->
+            <!--The Cut Dead Trees screen-->
+            <div class="train" id="chopDeadTreesScreen" style="display:none;"> <img src="img/woodcutIcon.png" style="max-width: 95%"> </div>
+
+            <!--The Mining Training screens-->
+            <!--The Mine Small Arcanic Crystals screen-->
+            <div class="train" id="mineSmallCrystals" style="display:none;"> <img src="img/mineIcon.png" style="max-width: 95%"> </div>
+
+        </div>
+
+
+        <!--The bottom navbar that can take you to Hero/World/Train-->
+        <nav class="navbar-fixed-bottom navbar-inverse" id="gandozia">
+            <div class="container">
+                <div class="navbar-header">
+                    <h2 style="color: gold; font-family: fantasy; text-transform: none">Gandozia</h2>
+                </div>
+                <ul class="nav navbar-nav bottomNav" style="font-family: sans-serif">
+                    <li class="active dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown">World<span class="caret" style="transform: rotate(180deg)"></span></a>
+                        <ul class="dropdown-menu">
+                            <li id="overviewLink" style="display:block">
+                                <a href='/overview'>Overview</a>
+                            </li>
+                            <li id="shopLink" style="display:block">
+                                <a href='/shop'>Shops</a>
+                            </li>
+                            <li id="gambleLink" style="display:none">
+                                <a href='/gamble'>Gamble</a>
+                            </li>
+                            <li id="sewersLink" style="display:none">
+                                <a href='/sewers'>Sewers</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" id="hero">Hero<span class="caret" style="transform: rotate(180deg)"></span></a>
+                        <ul class="dropdown-menu">
+                            <li id="statsLink" style="display:block">
+                                <a href='/stats'>Stats</a>
+                            </li>
+                            <li id="inventoryLink" style="display:block">
+                                <a href='/inventory'>Inventory</a>
+                            </li>
+                            <li id="equipmentLink" style="display:block">
+                                <a href='/equipment'>Equipment</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown">Train<span class="caret" style="transform: rotate(180deg)"></span></a>
+                        <ul class="dropdown-menu">
+                            <li id="combatLink" style="display:block">
+                                <a href='/combat'>Combat</a>
+                            </li>
+                            <li id="arcaniaLink" style="display:block">
+                                <a href='/arcania'>Arcania</a>
+                            </li>
+                            <li id="huntLink" style="display:block">
+                                <a href='/hunt'>Hunting</a>
+                            </li>
+                            <li id="woodcutLink" style="display:block">
+                                <a href='/woodcut'>Woodcutting</a>
+                            </li>
+                            <li id="mineLink" style="display:block">
+                                <a href='/mine'>Mining</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+    </div>
+
+    <!--Required Scripts (Jquery, Bootstrap, Page.js for routing, Index)-->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/notify.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.0/jquery-confirm.min.js"></script>
+    <script src="https://cdn.rawgit.com/visionmedia/page.js/master/page.js"></script>
+    <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
+
+</body>
+
+</html>

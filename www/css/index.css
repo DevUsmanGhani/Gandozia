@@ -1,0 +1,425 @@
+/*
+ * Licensed to the Apache Software Foundation (ASF) under one
+ * or more contributor license agreements.  See the NOTICE file
+ * distributed with this work for additional information
+ * regarding copyright ownership.  The ASF licenses this file
+ * to you under the Apache License, Version 2.0 (the
+ * "License"); you may not use this file except in compliance
+ * with the License.  You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+
+* {
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    /* make transparent link selection, adjust last value opacity 0 to 1.0 */
+}
+
+body {
+    -webkit-touch-callout: none;
+    /* prevent callout to copy image, etc when tap to hold */
+    -webkit-text-size-adjust: none;
+    /* prevent webkit from resizing text to fit */
+    -webkit-user-select: none;
+    /* prevent copy paste, to allow, change 'none' to 'text' */
+    font-family: 'HelveticaNeue-Light', 'HelveticaNeue', Helvetica, Arial, sans-serif;
+    font-size: 12px;
+    height: 100%;
+    margin: 0px;
+    padding: 0px;
+    text-transform: uppercase;
+    width: 100%;
+}
+
+/* Portrait layout (default) */
+
+.app {
+
+    position: absolute;
+    /* position in the center of the screen */
+    left: 50%;
+    top: 50%;
+    height: 50px;
+    /* text area height */
+    width: 225px;
+    /* text area width */
+    text-align: center;
+    padding: 180px 0px 0px 0px;
+    /* image height is 200px (bottom 20px are overlapped with text) */
+    margin: -115px 0px 0px -112px;
+    /* offset vertical: half of image height and text area height */
+    /* offset horizontal: half of text area width */
+}
+
+/* Landscape layout (with min-width) */
+
+@media screen and (min-aspect-ratio: 1/1) and (min-width:400px) {
+    .app {
+        background-position: left center;
+        padding: 75px 0px 75px 170px;
+        /* padding-top + padding-bottom + text area = image height */
+        margin: -90px 0px 0px -198px;
+        /* offset vertical: half of image height */
+        /* offset horizontal: half of image width and text area width */
+    }
+}
+
+h1 {
+    font-size: 24px;
+    font-weight: normal;
+    margin: 0px;
+    overflow: visible;
+    padding: 0px;
+    text-align: center;
+}
+
+.event {
+    border-radius: 4px;
+    -webkit-border-radius: 4px;
+    color: #FFFFFF;
+    font-size: 12px;
+    margin: 0px 30px;
+    padding: 2px 0px;
+}
+
+.event.listening {
+    background-color: #333333;
+    display: block;
+}
+
+.event.received {
+    background-color: #4B946A;
+    display: none;
+}
+
+@keyframes fade {
+    from {
+        opacity: 1.0;
+    }
+    50% {
+        opacity: 0.4;
+    }
+    to {
+        opacity: 1.0;
+    }
+}
+
+@-webkit-keyframes fade {
+    from {
+        opacity: 1.0;
+    }
+    50% {
+        opacity: 0.4;
+    }
+    to {
+        opacity: 1.0;
+    }
+}
+
+.blink {
+    animation: fade 3000ms infinite;
+    -webkit-animation: fade 3000ms infinite;
+}
+
+.train {
+    padding: 15px 25px;
+
+
+
+    color: #C3C3C3;
+    background-color: #C3C3C3;
+
+    border-radius: 20px;
+    box-shadow: 0 9px #999;
+}
+
+.train:hover {
+    background-color: #C3C3C3;
+}
+
+.train:active {
+    background-color: #C3C3C3;
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+}
+
+button.custom-button {
+    margin-top: .65em;
+    margin-bottom: .8em;
+    font-size: 1.7em;
+    color: white;
+    background-color: darkslategray;
+    border-radius: 30px;
+    box-shadow: 0 2px;
+    margin-right: .3em;
+
+
+}
+
+button.custom-button:focus,
+button.custom-button:active {
+    color: white;
+    box-shadow: 0 2px;
+    outline: none;
+    border: none;
+
+
+}
+
+button.custom-button:hover {
+    color: white;
+    background-color: darkslategray;
+
+}
+
+.skill-level {
+    color: white;
+    border: 2px solid white;
+    border-radius: 18px;
+    background-color: darkslategrey;
+    padding: 10px;
+    /*background-image: url("../img/rocks.jpg");*/
+    font-size: .55em;
+}
+
+.exp {
+    font-size: .8em;
+    color: grey;
+}
+
+
+
+.fight {
+    font-size: 1.4em;
+    font-weight: bold;
+}
+
+.name {
+    font-size: 1.5em;
+    text-decoration: underline;
+    font-weight: bolder;
+}
+
+.enemy {
+    color: darkred;
+    text-decoration-color: darkred;
+}
+
+.you {
+    color: darkgreen;
+    text-decoration-color: darkgreen;
+}
+
+.btn.fight-button {
+    width: 32%;
+    font-size: .9em;
+   
+}
+
+.black {
+    color: black;
+}
+
+#combatScreen .custom-button {
+    width: 85%;
+}
+
+.btn.info {
+    width: 10%;
+    border-radius: 20px;
+}
+
+#equipment {
+    background-color: firebrick;
+    color: gold;
+    font-size: .8em;
+    margin-top: 1em;
+    padding-left: 1em;
+    border-radius: 10%;
+    border-color: antiquewhite;
+    border-width: medium;
+    border-style: solid;
+}
+
+#equipmentStats {
+    background-color: firebrick;
+    color: darkgoldenrod;
+    font-size: .8em;
+    margin-top: 2em;
+    padding-left: 1em;
+    border-radius: 10%;
+    border-color: antiquewhite;
+    border-width: medium;
+    border-style: solid;
+}
+
+#equipmentHeader {
+    color: maroon;
+    font-weight: bolder;
+    margin-top: -1em;
+
+}
+
+.equip {
+    font-weight: bolder;
+    font-size: 1.15em;
+    color: whitesmoke;
+}
+
+.equipStatHeader {
+    color: whitesmoke;
+}
+
+.eq {
+    font-weight: bold;
+}
+
+#inventory {
+    font-size: .63em;
+    color: blue;
+}
+
+#inventoryHeader {
+    color: maroon;
+    font-weight: bolder;
+    margin-top: -1em;
+}
+
+.btn.sell {
+    background-color: darkslategray;
+}
+
+.btn.sell:hover {
+    background-color: darkslategray;
+}
+
+.btn.back {
+    background-color: dimgray;
+}
+
+.btn.back:hover {
+    background-color: dimgray;
+}
+
+#inventoryHunting {
+    padding: .5em;
+    margin-top: .5em;
+    background-color: firebrick;
+    color: white;
+    border-radius: 10%;
+    font-weight: bold;
+    border-color: goldenrod;
+    border-width: medium;
+    border-style: solid;
+}
+
+#inventoryWoodcutting {
+    padding: .5em;
+    margin-top: 1em;
+    background-color: saddlebrown;
+    color: white;
+    border-radius: 10%;
+    font-weight: bold;
+    border-color: forestgreen;
+    border-width: medium;
+    border-style: solid;
+
+}
+
+#inventoryMining {
+    padding: .5em;
+    margin-top: 1em;
+    background-color: darkorange;
+    color: white;
+    font-weight: bold;
+    border-radius: 10%;
+    border-color: darkslateblue;
+    border-width: medium;
+    border-style: solid;
+}
+
+.btn.consume {
+    margin-left: .5em;
+    font-size: .8em;
+    padding: .2em;
+    padding-bottom: .1em;
+    padding-top: .1em;
+    color: black;
+    font-weight: bold;
+}
+
+.bonus {
+    color: black;
+    font-size: .8em;
+}
+
+.sml {
+    font-size: .9em;
+    font-weight: bolder;
+}
+
+.hnt {
+    color: goldenrod;
+}
+
+.wc {
+    color: forestgreen;
+}
+
+.mn {
+    color: darkslateblue;
+}
+
+.centerFitter {
+    max-width: 90%;
+    max-height: 80%;
+}
+
+#overviewScreen {
+    margin-top: -1%;
+    margin-left: 10%;
+}
+
+
+
+.showArcana {
+    margin-right: .45em;
+    color: darkgoldenrod;
+}
+
+.showArcana.showArcanaAlchemy {
+    color: yellow;
+}
+
+.alchemyArcana {
+    font-size: 2em;
+    color: lightgoldenrodyellow;
+    font-weight: bold;
+}
+.progress.myBar {
+    display:inline-block; 
+    width: 60%; 
+    position: relative;  
+    margin-bottom: 0px;   
+}
+
+.btn85 {
+    width: 85%;
+}
+
+.alchemyLogs {
+    font-weight: bold;
+    font-size: 2em;
+    color: white;
+}
+
+.alchemyLogs .alchemyLogCount {
+    color: saddlebrown;
+}
