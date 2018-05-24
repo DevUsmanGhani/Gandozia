@@ -5,4 +5,24 @@ This application requires Apache Cordova and Node.js to run. Download Apache Cor
 
 ScreenShots
 
+MAINS SCREEN
 ![alt text](https://i.imgur.com/NUmDgFM.png)
+
+SHOPS
+![alt text](https://i.imgur.com/Tgu4Pbm.png)
+
+ENEMIES
+![alt text](https://i.imgur.com/UpaZ8ND.png)
+
+FIGHTING
+![alt text](https://i.imgur.com/L5BBJuw.png)
+
+LOOT
+![alt text](https://i.imgur.com/xGHcvPw.png)
+
+INVENTORY
+![alt text](https://i.imgur.com/rdjK62S.png)
+
+SKILLS
+![alt text](https://i.imgur.com/s5Nj06Y.png)
+
